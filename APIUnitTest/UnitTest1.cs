@@ -22,10 +22,10 @@ namespace APIUnitTest
             var dbReposMock = new Mock<IShopBridgeConfiguration>();
             dbReposMock.Setup(r => r.Getproduct(1)).Returns(new ShopBridge { Name = "test", Description = "test", Price=20.0 });
 
-            var myTestingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
+            var testingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
 
-            var clientNames = myTestingService.GetProduct(1);
-            Assert.AreEqual("test", clientNames.Name);
+            var product = testingService.GetProduct(1);
+            Assert.AreEqual("test", product.Name);
         }
 
         [TestMethod]
@@ -35,10 +35,10 @@ namespace APIUnitTest
             dbReposMock.Setup(r => r.GetproductList()).Returns(new List<ShopBridge>{ new ShopBridge { Name="Test", Description="Test" },
                               new ShopBridge { Name="Test", Description="Test" } });
 
-            var myTestingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
+            var testingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
 
-            var clientNames = myTestingService.GetAllProdcuts();
-            Assert.AreEqual("Test", clientNames[0].Name);
+            var products = testingService.GetAllProdcuts();
+            Assert.AreEqual("Test", products[0].Name);
         }
 
 
@@ -55,10 +55,10 @@ namespace APIUnitTest
             var dbReposMock = new Mock<IShopBridgeConfiguration>();
             dbReposMock.Setup(t => t.SaveProductConfiguration(It.IsAny<ShopBridge>())).Returns("Success");
 
-            var myTestingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
+            var testingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
 
-            var clientNames = myTestingService.AddNewProduct(addNewItem);
-            Assert.AreEqual("Success", clientNames);
+            var status = testingService.AddNewProduct(addNewItem);
+            Assert.AreEqual("Success", status);
         }
 
         [TestMethod]
@@ -75,10 +75,10 @@ namespace APIUnitTest
             var dbReposMock = new Mock<IShopBridgeConfiguration>();
             dbReposMock.Setup(t => t.UpdateProductConfiguration(It.IsAny<ShopBridge>())).Returns("Success");
 
-            var myTestingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
+            var testingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
 
-            var clientNames = myTestingService.UpdateProduct(updateItem);
-            Assert.AreEqual("Success", clientNames);
+            var status = testingService.UpdateProduct(updateItem);
+            Assert.AreEqual("Success", status);
         }
 
         [TestMethod]
@@ -87,10 +87,10 @@ namespace APIUnitTest
             var dbReposMock = new Mock<IShopBridgeConfiguration>();
             dbReposMock.Setup(r => r.DeleteProduct(1)).Returns("Success");
 
-            var myTestingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
+            var testingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
 
-            var clientNames = myTestingService.DeleteProduct(1);
-            Assert.AreEqual("Success", clientNames);
+            var status = testingService.DeleteProduct(1);
+            Assert.AreEqual("Success", status);
         }
     }
 }
