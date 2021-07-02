@@ -4,6 +4,7 @@ using Core.Helper;
 using DataModel;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Centra.Core
 {
@@ -60,30 +61,30 @@ namespace Centra.Core
             }
         }
 
-        public List<ShopBridge> GetAllProdcuts()
+        public async Task<List<ShopBridge>> GetAllProdcuts()
         {
-            return _shopBridgeConfigurationRepository.GetproductList();
+            return await Task.Run(() => _shopBridgeConfigurationRepository.GetproductList());
         }
 
 
-        public string AddNewProduct(ShopBridge product)
+        public async Task<string> AddNewProduct(ShopBridge product)
         {
-            return _shopBridgeConfigurationRepository.SaveProductConfiguration(product);
+            return await Task.Run(() => _shopBridgeConfigurationRepository.SaveProductConfiguration(product));
         }
 
-        public string UpdateProduct(ShopBridge product)
+        public async Task<string> UpdateProduct(ShopBridge product)
         {
-            return _shopBridgeConfigurationRepository.UpdateProductConfiguration(product);
+            return await Task.Run(() => _shopBridgeConfigurationRepository.UpdateProductConfiguration(product));
         }
 
-        public string DeleteProduct(int id)
+        public async Task<string> DeleteProduct(int id)
         {
-            return _shopBridgeConfigurationRepository.DeleteProduct(id);
+            return await Task.Run(() => _shopBridgeConfigurationRepository.DeleteProduct(id));
         }
 
-        public ShopBridge GetProduct(int id)
+        public async Task<ShopBridge> GetProduct(int id)
         {
-            return _shopBridgeConfigurationRepository.Getproduct(id);
+            return await Task.Run(() => _shopBridgeConfigurationRepository.Getproduct(id));
         }
 
 

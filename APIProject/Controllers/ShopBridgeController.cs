@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace APIProject.Controllers
@@ -16,45 +17,45 @@ namespace APIProject.Controllers
     {
         [Route("ShopBridge/GetAllProduct")]
         [HttpGet]
-        public IEnumerable<ShopBridge> GetAllProduct()
+        public async Task<IEnumerable<ShopBridge>> GetAllProduct()
         {
-            return ShopBridgeConfigurationManager.Instance.GetAllProdcuts();
+            return await ShopBridgeConfigurationManager.Instance.GetAllProdcuts();
         }
 
         [Route("ShopBridge/GetProduct/{id}")]
         [HttpGet]
-        public ShopBridge GetProductById(int id)
+        public async Task<ShopBridge> GetProductById(int id)
         {
-            return ShopBridgeConfigurationManager.Instance.GetProduct(id);
+            return await ShopBridgeConfigurationManager.Instance.GetProduct(id);
         }
 
         [Route("ShopBridge/AddProduct")]
         [HttpPost]
-        public string AddProduct([FromBody]ShopBridge product)
+        public async Task<string> AddProduct([FromBody]ShopBridge product)
         {
             if (!ModelState.IsValid)
             {
                 return "One of the property value wrong or exceeded.";
             }
-            return ShopBridgeConfigurationManager.Instance.AddNewProduct(product);
+            return await ShopBridgeConfigurationManager.Instance.AddNewProduct(product);
         }
 
         [Route("ShopBridge/UpdateProduct")]
         [HttpPost]
-        public string UpdateProduct([FromBody]ShopBridge product)
+        public async Task<string> UpdateProduct([FromBody]ShopBridge product)
         {
             if (!ModelState.IsValid)
             {
                 return "One of the property value wrong or exceeded.";
             }
-            return ShopBridgeConfigurationManager.Instance.UpdateProduct(product);
+            return await ShopBridgeConfigurationManager.Instance.UpdateProduct(product);
         }
 
         [Route("ShopBridge/DeleteProduct/{id}")]
         [HttpDelete]
-        public string DeleteProduct(int id)
+        public async Task<string> DeleteProduct(int id)
         {
-            return ShopBridgeConfigurationManager.Instance.DeleteProduct(id);
+            return await ShopBridgeConfigurationManager.Instance.DeleteProduct(id);
         }
     }
 }
