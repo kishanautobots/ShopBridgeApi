@@ -20,7 +20,7 @@ namespace Centra.Core
         private static readonly object _instanceSyncLock = new object();
 
         /// <summary>
-        /// The smart monitor configuration repository
+        /// The shop bridge configuration repository
         /// </summary>
         public readonly IShopBridgeConfiguration _shopBridgeConfigurationRepository;
 
@@ -35,7 +35,6 @@ namespace Centra.Core
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="connectionString">The connection string.</param>
-        /// <param name="activityLogger">The activity logger.</param>
         public ShopBridgeConfigurationManager(IShopBridgeConfiguration repository, string connectionString)
         {
             _shopBridgeConfigurationRepository = repository;
@@ -82,9 +81,9 @@ namespace Centra.Core
             return _shopBridgeConfigurationRepository.DeleteProduct(id);
         }
 
-        public ShopBridge GetProduct(string name)
+        public ShopBridge GetProduct(int id)
         {
-            return _shopBridgeConfigurationRepository.Getproduct(name);
+            return _shopBridgeConfigurationRepository.Getproduct(id);
         }
 
 

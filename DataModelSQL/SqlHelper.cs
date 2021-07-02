@@ -48,7 +48,6 @@ namespace DataModelSql
         /// <param name="commandText">The text to set as the CommandText.</param>
         /// <param name="parameters">The <see cref="IDataParameter"/>s to give to the SQL.</param>
         /// <returns>An <see cref="SqlDataReader"/>.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         public IDataReader ExecuteDataReader(string commandText, IEnumerable<IDataParameter> commandParameters = null)
         {
             return ExecuteDataReader(commandText, CommandType.Text, commandParameters);
@@ -62,7 +61,6 @@ namespace DataModelSql
         /// <param name="commandType"></param>
         /// <param name="parameters">The <see cref="IDataParameter"/>s to give to the SQL.</param>
         /// <returns>An <see cref="SqlDataReader"/>.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         public IDataReader ExecuteDataReader(
             string commandText,
             CommandType commandType,
@@ -134,7 +132,6 @@ namespace DataModelSql
         /// <returns>An open <see cref="SqlConnection"/>.</returns>
         /// <remarks><see cref="SqlConnection"/> is <see cref="IDisposable"/>.  Callers of this function must be
         /// careful to dispose the returned connection properly.</remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         public static SqlConnection CreateAndOpenConnection(string connectionString)
         {
             var connection = new SqlConnection(connectionString);
@@ -172,8 +169,7 @@ namespace DataModelSql
         /// Creates a <see cref="SqlCommand"/>
         /// </summary>
         /// <remarks>NOTE: SqlComand is IDisposable</remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
-        public static SqlCommand CreateCommand(
+         public static SqlCommand CreateCommand(
             SqlConnection connection,
             string text,
             CommandType type,

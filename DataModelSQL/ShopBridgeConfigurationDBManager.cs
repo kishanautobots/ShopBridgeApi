@@ -16,7 +16,7 @@ namespace DataModelSQL
         /// <summary>
         /// Save product detail
         /// </summary>
-        /// <param name="productConfiguration"></param>
+        /// <param name="productConfiguration">product detail</param>
         /// <returns></returns>
         public string SaveProductConfiguration(ShopBridge productConfiguration)
         {
@@ -45,7 +45,7 @@ namespace DataModelSQL
         /// <summary>
         /// Update product detail
         /// </summary>
-        /// <param name="productConfiguration"></param>
+        /// <param name="productConfiguration"> product detail</param>
         /// <returns></returns>
         public string UpdateProductConfiguration(ShopBridge productConfiguration)
         {
@@ -70,7 +70,7 @@ namespace DataModelSQL
         }
 
         /// <summary>
-        /// Delete product
+        /// Delete product by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -91,9 +91,8 @@ namespace DataModelSQL
         }
 
         /// <summary>
-        /// get all product
+        /// Get all product
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         public List<ShopBridge> GetproductList()
         {
@@ -131,13 +130,17 @@ namespace DataModelSQL
             return productList;
         }
 
-
-        public ShopBridge Getproduct(string name)
+        /// <summary>
+        /// Get product by id
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        public ShopBridge Getproduct(int id)
         {
             ShopBridge productList = null;
             try
             {
-                using (SqlDataReader reader = (SqlDataReader)SqlHelper.Instance.ExecuteDataReader("select * from dbo.shop_bridge_products where name = " + name, CommandType.Text))
+                using (SqlDataReader reader = (SqlDataReader)SqlHelper.Instance.ExecuteDataReader("select * from dbo.shop_bridge_products where id = " + id, CommandType.Text))
                 {
                     while (reader.Read())
                     {

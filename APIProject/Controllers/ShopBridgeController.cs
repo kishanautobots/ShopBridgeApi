@@ -21,6 +21,13 @@ namespace APIProject.Controllers
             return ShopBridgeConfigurationManager.Instance.GetAllProdcuts();
         }
 
+        [Route("ShopBridge/GetProduct/{id}")]
+        [HttpGet]
+        public ShopBridge GetProductById(int id)
+        {
+            return ShopBridgeConfigurationManager.Instance.GetProduct(id);
+        }
+
         [Route("ShopBridge/AddProduct")]
         [HttpPost]
         public string AddProduct([FromBody]ShopBridge product)

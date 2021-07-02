@@ -17,14 +17,14 @@ namespace APIUnitTest
     public class UnitTest1
     {
         [TestMethod]
-        public void GetProductByName()
+        public void GetProductById()
         {
             var dbReposMock = new Mock<IShopBridgeConfiguration>();
-            dbReposMock.Setup(r => r.Getproduct("test")).Returns(new ShopBridge { Name = "test", Description = "test" });
+            dbReposMock.Setup(r => r.Getproduct(1)).Returns(new ShopBridge { Name = "test", Description = "test", Price=20.0 });
 
             var myTestingService = new ShopBridgeConfigurationManager(dbReposMock.Object, "");
 
-            var clientNames = myTestingService.GetProduct("test");
+            var clientNames = myTestingService.GetProduct(1);
             Assert.AreEqual("test", clientNames.Name);
         }
 

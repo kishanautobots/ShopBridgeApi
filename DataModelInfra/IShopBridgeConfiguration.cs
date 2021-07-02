@@ -15,8 +15,7 @@ namespace Centra.DataModelInfrastructure
 
         List<ShopBridge> GetproductList();
 
-        ShopBridge Getproduct(string name);
-
+        ShopBridge Getproduct(int id);
 
     }
 }
